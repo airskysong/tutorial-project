@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2w7kipaxqvpn"]
+
+[ext_resource type="Script" path="res://Asset/Scripts/start_scene.gd" id="1_gyjic"]
+[ext_resource type="Texture2D" uid="uid://bb7h8hgr8iuxp" path="res://Asset/Arts/sparkcell/costume2.png" id="1_og840"]
+
+[node name="StartScene" type="Node2D"]
+script = ExtResource("1_gyjic")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="背景色" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0666667, 0, 1)
+
+[node name="背景图" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 640.0
+texture = ExtResource("1_og840")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/背景图"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -160.0
+offset_right = 44.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="开始按钮" type="Button" parent="Control/背景图/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "开始"
+
+[node name="结束按钮" type="Button" parent="Control/背景图/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "退出"

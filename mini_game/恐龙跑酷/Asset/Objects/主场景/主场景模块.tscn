@@ -1,0 +1,261 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Asset/Scripts/主场景模块.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Resource/s_clouds.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Resource/仙人掌1.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Resource/仙人掌2.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Resource/Kenney Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Asset/Objects/主场景/恐龙.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Asset/Resource/s_crow_strip5.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Resource/aaa.png" type="Texture" id=8]
+[ext_resource path="res://Asset/Objects/主场景/文件读取模块.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "fly"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 25 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 25, 25 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.611732, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1 )
+
+[sub_resource type="LineShape2D" id=2]
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "按钮旋转"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+
+[node name="主场景模块" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="地面背景层" type="ParallaxBackground" parent="."]
+layer = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="地面背景层"]
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="乌鸦" type="Area2D" parent="地面背景层/ParallaxLayer"]
+position = Vector2( 695, 107 )
+scale = Vector2( 1.5, 1.5 )
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="地面背景层/ParallaxLayer/乌鸦"]
+shape = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="地面背景层/ParallaxLayer/乌鸦"]
+autoplay = "fly"
+anims/RESET = SubResource( 16 )
+anims/fly = SubResource( 17 )
+
+[node name="Sprite" type="Sprite" parent="地面背景层/ParallaxLayer/乌鸦"]
+texture = ExtResource( 7 )
+flip_h = true
+hframes = 5
+region_enabled = true
+region_rect = Rect2( -1, 0, 120, 44 )
+
+[node name="小仙人掌" type="Area2D" parent="地面背景层/ParallaxLayer"]
+position = Vector2( 1266, 210 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="小仙人掌" type="Sprite" parent="地面背景层/ParallaxLayer/小仙人掌"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="地面背景层/ParallaxLayer/小仙人掌"]
+shape = SubResource( 3 )
+
+[node name="大仙人掌" type="Area2D" parent="地面背景层/ParallaxLayer"]
+position = Vector2( 698, 217 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="大仙人掌" type="Sprite" parent="地面背景层/ParallaxLayer/大仙人掌"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="地面背景层/ParallaxLayer/大仙人掌"]
+shape = SubResource( 4 )
+
+[node name="地面" type="Line2D" parent="地面背景层/ParallaxLayer"]
+position = Vector2( 0, 240 )
+z_index = 1
+points = PoolVector2Array( 0, 0, 920, 0, 930, -8, 940, 0, 1280, 0 )
+width = 15.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+gradient = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="地面背景层/ParallaxLayer/地面"]
+position = Vector2( 0, -6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="地面背景层/ParallaxLayer/地面/StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="背景视差层" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="背景视差层"]
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="ColorRect2" type="ColorRect" parent="背景视差层/ParallaxLayer"]
+margin_left = 640.0
+margin_right = 1280.0
+margin_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="背景视差层/ParallaxLayer"]
+margin_right = 640.0
+margin_bottom = 240.0
+
+[node name="云层背景" type="Sprite" parent="背景视差层/ParallaxLayer"]
+modulate = Color( 0.73, 0.73, 0.73, 1 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="云层背景2" type="Sprite" parent="背景视差层/ParallaxLayer/云层背景"]
+position = Vector2( 640, 0 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 8
+custom_constants/margin_left = 32
+
+[node name="分数" type="Label" parent="CanvasLayer/MarginContainer"]
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 928.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "score 000"
+align = 1
+valign = 1
+
+[node name="最高分" type="Label" parent="CanvasLayer/MarginContainer"]
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 928.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "max 000"
+valign = 1
+
+[node name="跳跃数" type="Label" parent="CanvasLayer/MarginContainer"]
+margin_left = 32.0
+margin_top = 8.0
+margin_right = 928.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "jump  000"
+align = 2
+valign = 1
+
+[node name="结束提示" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_top = 70.0
+margin_bottom = 118.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "Game over"
+align = 1
+valign = 1
+
+[node name="重来按钮" type="TextureButton" parent="CanvasLayer"]
+pause_mode = 2
+margin_left = 459.0
+margin_top = 140.0
+margin_right = 499.0
+margin_bottom = 180.0
+rect_pivot_offset = Vector2( 20, 20 )
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/重来按钮"]
+autoplay = "按钮旋转"
+anims/RESET = SubResource( 14 )
+"anims/按钮旋转" = SubResource( 15 )
+
+[node name="恐龙" parent="." instance=ExtResource( 6 )]
+position = Vector2( 208, 160 )
+collision_mask = 14
+jump_force = 450
+gravity = null
+
+[node name="文件读取模块" parent="." instance=ExtResource( 9 )]

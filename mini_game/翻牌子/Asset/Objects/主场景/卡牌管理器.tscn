@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Asset/Scripts/卡牌管理器.gd" type="Script" id=1]
+
+[node name="卡牌管理器" type="Node2D"]
+script = ExtResource( 1 )
+card_spaing = Vector2( 16, 32 )
+grids_size = Vector2( 4, 3 )
+stay_time = 0.8
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 500.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 500, 350 )
+color = Color( 0.12549, 0.494118, 0.854902, 1 )
+
+[node name="cards" type="Node2D" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="cards"]
+visible = false
+color = Color( 0.12549, 0.854902, 0.203922, 0.498039 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

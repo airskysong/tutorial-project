@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Asset/Scripts/圆圈模块.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Resource/圆圈/Ground1.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Objects/主场景/金币模块.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 12 )
+
+[node name="圆圈模块" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -57, 105, -72, 95, -87, 82, -98, 64, -107, 44, -112, 21, -113, -1, -108, -30, -97, -52, -85, -69, -69, -83, -54, -93, -41, -100, -22, -105, 0, -107, 19, -105, 42, -98, 61, -89, 73, -80, 87, -67, 98, -49, 106, -32, 111, -11, 113, 1, 112, 23, 107, 45, 98, 63, 89, 76, 78, 89, 65, 99, 52, 107, 45, 93, 56, 84, 74, 69, 86, 48, 94, 25, 95, 0, 88, -30, 75, -53, 60, -67, 43, -78, 26, -86, 0, -89, -27, -86, -51, -73, -69, -59, -82, -43, -90, -26, -96, 0, -95, 21, -90, 41, -81, 59, -71, 72, -61, 81, -47, 90 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="伤害区域" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="伤害区域"]
+position = Vector2( 0, -81 )
+shape = SubResource( 1 )
+
+[node name="金币模块" parent="." instance=ExtResource( 3 )]

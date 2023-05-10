@@ -1,0 +1,14 @@
+CollisionPolygon2D
+Polygon2D
+StaticBody2D
+CollisionShape2D
+ShapeCast2D
+AnimationPlayer
+Sprite2D
+RigidBody2D
+Node2D
+Button
+VBoxContainer
+Control
+ColorRect
+TextureRect

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://driwcvhxp6ktw"]
+
+[ext_resource type="Texture2D" uid="uid://b0wbduov064uk" path="res://Asset/Arts/sparkcell/2r.png" id="1_ci3rd"]
+[ext_resource type="Texture2D" uid="uid://c5q236irg73mt" path="res://Asset/Arts/sparkcell/2r11.png" id="2_1bao3"]
+
+[node name="Room b" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_ci3rd")
+offset = Vector2(-4, 0)
+
+[node name="bound" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_1bao3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bound"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bound/StaticBody2D"]
+polygon = PackedVector2Array(-41, -8.5, -32, -8.5, -32, -24, 32, -24.5, 32, -8.5, 40.5, -8.5, 40.5, -41.5, -40.5, -41.5)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="bound/StaticBody2D"]
+polygon = PackedVector2Array(-40.5, 8, -32, 8, -32, 32, 32.5, 32, 32.5, 8, 40.5, 8, 40.5, 42, -41.5, 41.5)

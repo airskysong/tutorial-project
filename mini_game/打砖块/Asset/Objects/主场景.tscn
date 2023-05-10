@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Asset/Art/block.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Script/主场景.gd" type="Script" id=2]
+[ext_resource path="res://Asset/Objects/横版模块.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Asset/Objects/砖块模块.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Asset/Objects/小球模块.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Asset/font/SourceHanSerifCN-Light.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://Asset/VFX/VFX_Explore.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Asset/Objects/Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://Asset/Objects/摇杆.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 64 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 2
+outline_color = Color( 0.0901961, 0.196078, 0.843137, 1 )
+font_data = ExtResource( 6 )
+
+[node name="主场景" type="Node2D"]
+script = ExtResource( 2 )
+bracket_model = ExtResource( 3 )
+bracket_move_speed = 400.0
+block_model = ExtResource( 4 )
+ball_model = ExtResource( 5 )
+vfx_explore = ExtResource( 7 )
+
+[node name="背景色板" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 960, 720 )
+mouse_filter = 2
+color = Color( 0.266667, 0.380392, 0.454902, 1 )
+
+[node name="上方墙体" type="StaticBody2D" parent="."]
+position = Vector2( 476, 7 )
+scale = Vector2( 4.23, 0.25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="上方墙体"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="上方墙体"]
+texture = ExtResource( 1 )
+
+[node name="左边墙体" type="StaticBody2D" parent="."]
+position = Vector2( 0, 390 )
+rotation = 1.5708
+scale = Vector2( 4.23, 0.25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="左边墙体"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="左边墙体"]
+texture = ExtResource( 1 )
+
+[node name="右边墙体" type="StaticBody2D" parent="."]
+position = Vector2( 960, 390 )
+rotation = 1.5708
+scale = Vector2( 4.23, 0.25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="右边墙体"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="右边墙体"]
+texture = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+margin_bottom = 70.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+
+[node name="关卡文本" type="Label" parent="CanvasLayer/Control/MarginContainer"]
+margin_left = 20.0
+margin_top = 23.0
+margin_right = 940.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 2 )
+text = "关卡：0"
+
+[node name="分数文本" type="Label" parent="CanvasLayer/Control/MarginContainer"]
+margin_left = 20.0
+margin_top = 23.0
+margin_right = 940.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 2 )
+text = "分数：0"
+align = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="摇杆" parent="." instance=ExtResource( 9 )]
+position = Vector2( 140, 607 )

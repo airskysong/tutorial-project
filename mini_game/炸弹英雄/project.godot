@@ -1,0 +1,67 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Camera2D",
+"class": "VFXCam",
+"language": "GDScript",
+"path": "res://Asset/Scripts/屏幕振动模块.gd"
+} ]
+_global_script_class_icons={
+"VFXCam": ""
+}
+
+[application]
+
+config/name="炸弹英雄"
+run/main_scene="res://Asset/Object/启动/启动模块.tscn"
+config/icon="res://Asset/Resource/icon.png"
+
+[autoload]
+
+ScreenTransition="*res://Asset/Object/全局模块/ScreenTransition.tscn"
+GlobalVal="*res://Asset/Object/全局模块/GlobalVal.tscn"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
+[display]
+
+window/size/width=960
+window/size/height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Enemy"
+2d_render/layer_3="Bomb"
+
+[mono]
+
+project/assembly_name="炸弹英雄"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

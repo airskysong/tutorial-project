@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Asset/Object/主场景模块/方块/块.tscn" type="PackedScene" id=1]
+
+[node name="L形" type="Node2D"]
+
+[node name="块" parent="." instance=ExtResource( 1 )]
+position = Vector2( -32, -64 )
+
+[node name="块2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -32, 0 )
+
+[node name="块3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -32, 64 )
+
+[node name="块4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 64 )

@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Asset/Resource/背景对象.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Resource/Fonts/BOBOHEI-2.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Asset/Resource/重载.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Scripts/结束模块.gd" type="Script" id=4]
+[ext_resource path="res://Asset/Object/结束/文件读写模块.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 38
+font_data = ExtResource( 2 )
+
+[node name="结束模块" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="背景" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="结束提示" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.0
+margin_top = -168.0
+margin_right = 206.0
+margin_bottom = -84.0
+custom_fonts/font = SubResource( 1 )
+text = "Game Over"
+align = 1
+valign = 1
+
+[node name="记录1" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.0
+margin_top = -40.0
+margin_right = 206.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
+text = "消灭了：00个敌人"
+align = 1
+valign = 1
+
+[node name="记录2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -206.0
+margin_top = 24.0
+margin_right = 206.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 2 )
+text = "最大记录：00"
+align = 1
+valign = 1
+
+[node name="重来按钮" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -82.0
+margin_top = -222.0
+margin_right = -18.0
+margin_bottom = -195.0
+rect_scale = Vector2( 2, 2 )
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="文件读写模块" parent="." instance=ExtResource( 5 )]

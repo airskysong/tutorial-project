@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuo32oeuim7p5"]
+
+[ext_resource type="Script" path="res://Asset/Scripts/main_scene.gd" id="1_hoii3"]
+[ext_resource type="Texture2D" uid="uid://cjcrbrwl6qiv5" path="res://Asset/Arts/sparkcell/backdrop1.png" id="1_nfpqt"]
+[ext_resource type="PackedScene" uid="uid://csl754887cj1a" path="res://Asset/Scenes/player.tscn" id="3_7vw78"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_hoii3")
+m_rooms_num = 4
+
+[node name="environment" type="Node2D" parent="."]
+position = Vector2(100, 320)
+scale = Vector2(2, 2)
+
+[node name="背景" type="Sprite2D" parent="environment"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_nfpqt")
+
+[node name="Player" parent="environment" instance=ExtResource("3_7vw78")]

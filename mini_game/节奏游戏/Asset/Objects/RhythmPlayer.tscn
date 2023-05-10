@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Asset/Resource/button2.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Resource/button1.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Scripts/RhythmPlayer.gd" type="Script" id=4]
+[ext_resource path="res://Asset/Objects/Appraise.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.0227
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 36.3456
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "pressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[node name="RhythmPlayer" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = -50.0
+margin_right = 400.0
+margin_bottom = 50.0
+color = Color( 0.0313726, 0.027451, 0.027451, 0.415686 )
+
+[node name="Center" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Center"]
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Center"]
+visible = false
+texture = ExtResource( 1 )
+
+[node name="Perfect" type="Area2D" parent="Center"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center/Perfect"]
+shape = SubResource( 1 )
+
+[node name="Good" type="Area2D" parent="Center"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center/Good"]
+shape = SubResource( 2 )
+
+[node name="Bad" type="Area2D" parent="Center"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center/Bad"]
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Center"]
+anims/RESET = SubResource( 4 )
+anims/pressed = SubResource( 5 )
+
+[node name="Appraise" parent="Center" instance=ExtResource( 5 )]
+position = Vector2( -2, -52 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true

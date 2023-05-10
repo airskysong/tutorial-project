@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Asset/Fonts/悠哉字体.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Asset/Scripts/启动模块.gd" type="Script" id=2]
+[ext_resource path="res://Asset/Objects/主场景/忍者.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Asset/Objects/主场景/大导弹.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Asset/Objects/主场景/小导弹.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("提示:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "提示动画"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("提示:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.196078 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="启动模块" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="背景" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.254902, 0.607843, 1 )
+
+[node name="标题" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -201.0
+margin_top = -189.0
+margin_right = 201.0
+margin_bottom = -112.0
+custom_fonts/font = SubResource( 1 )
+text = "飞行忍者2023"
+align = 1
+valign = 1
+
+[node name="提示" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -201.0
+margin_top = -90.5
+margin_right = 201.0
+margin_bottom = -13.5
+custom_fonts/font = SubResource( 2 )
+text = "按下任意键开始游戏"
+align = 1
+valign = 1
+
+[node name="动画" type="AnimationPlayer" parent="提示"]
+root_node = NodePath("../..")
+autoplay = "提示动画"
+anims/RESET = SubResource( 3 )
+"anims/提示动画" = SubResource( 4 )
+
+[node name="忍者" parent="." instance=ExtResource( 3 )]
+position = Vector2( 369, 276 )
+script = null
+
+[node name="大导弹" parent="." instance=ExtResource( 4 )]
+position = Vector2( 623, 154 )
+script = null
+
+[node name="大导弹2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 415, 93 )
+script = null
+
+[node name="小导弹" parent="." instance=ExtResource( 5 )]
+position = Vector2( 327, 447 )

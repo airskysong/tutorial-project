@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Asset/Scripts/Card.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Resource/card_match.tres" type="Resource" id=2]
+[ext_resource path="res://Asset/Resource/Card/card_back.png" type="Texture" id=3]
+
+[node name="Card" type="Node2D"]
+script = ExtResource( 1 )
+card_match = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 11, 2, 42, 60 )

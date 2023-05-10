@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Resource/Sprites/dialogue_box.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Resource/Fonts/BOBOHEI-2.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Scripts/DialogPlayer.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 2
+outline_color = Color( 0.0862745, 0.0196078, 0.0196078, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="DialogPlayer" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 3 )
+file_name = "res://Assets/Resource/Dialog/npc1.json"
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+margin_bottom = 160.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 944.0
+margin_bottom = 144.0
+texture = ExtResource( 1 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="CharacterName" type="Label" parent="Control/MarginContainer/NinePatchRect"]
+margin_left = 16.0
+margin_top = 11.0
+margin_right = 131.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 1 )
+text = "strange man"
+
+[node name="Dialog" type="Label" parent="Control/MarginContainer/NinePatchRect"]
+margin_left = 16.0
+margin_top = 46.0
+margin_right = 906.0
+margin_bottom = 116.0
+custom_colors/font_color = Color( 0, 0.458824, 0.658824, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "this is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is testthis is test this is test"
+autowrap = true
+clip_text = true
+
+[node name="Tween" type="Tween" parent="Control/MarginContainer/NinePatchRect"]
+
+[node name="Timer" type="Timer" parent="Control/MarginContainer/NinePatchRect"]

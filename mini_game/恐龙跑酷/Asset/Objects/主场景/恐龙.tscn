@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Asset/Resource/恐龙1.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Resource/恐龙3.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Resource/恐龙2.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Scripts/恐龙.gd" type="Script" id=4]
+[ext_resource path="res://Asset/Resource/Bip.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "受伤"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "奔跑"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 20, 22 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 20, 22 )
+
+[node name="恐龙" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+process_priority = 2
+anims/RESET = SubResource( 1 )
+"anims/受伤" = SubResource( 2 )
+"anims/奔跑" = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="碰撞检测" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="碰撞检测"]
+shape = SubResource( 5 )
+
+[node name="声效跳跃" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="area_entered" from="碰撞检测" to="." method="_on__area_entered"]

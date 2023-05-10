@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Asset/Scripts/Poker_AI.gd" type="Script" id=1]
+
+[node name="Poker_AI" type="Node"]
+script = ExtResource( 1 )

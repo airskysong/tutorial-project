@@ -1,0 +1,41 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Asset/Resource/金币/1.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Resource/金币/2.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Resource/金币/3.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Resource/金币/4.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Resource/金币/5.png" type="Texture" id=5]
+[ext_resource path="res://Asset/Resource/金币/6.png" type="Texture" id=6]
+[ext_resource path="res://Asset/Resource/金币/7.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Resource/金币/8.png" type="Texture" id=8]
+[ext_resource path="res://Asset/Scripts/金币.gd" type="Script" id=9]
+[ext_resource path="res://Asset/Resource/声音/Coin.wav" type="AudioStream" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 13 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="金币" type="Area2D"]
+scale = Vector2( 2, 2 )
+collision_layer = 4
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="SFX_coin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+
+[connection signal="area_entered" from="." to="." method="_on__area_entered"]

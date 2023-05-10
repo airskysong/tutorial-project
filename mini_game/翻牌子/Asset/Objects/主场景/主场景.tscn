@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Asset/Objects/主场景/卡牌管理器.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Asset/Scripts/主场景.gd" type="Script" id=2]
+
+[node name="主场景" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="卡牌管理器" parent="." instance=ExtResource( 1 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="time" type="Label" parent="CanvasLayer"]
+margin_top = 98.0
+margin_right = 58.0
+margin_bottom = 112.0
+text = "time:000"
+
+[node name="Timer" type="Timer" parent="CanvasLayer/time"]
+
+[node name="turn" type="Label" parent="CanvasLayer"]
+margin_top = 144.0
+margin_right = 58.0
+margin_bottom = 158.0
+text = "turn:000"
+
+[connection signal="timeout" from="CanvasLayer/time/Timer" to="." method="_on_Timer_timeout"]

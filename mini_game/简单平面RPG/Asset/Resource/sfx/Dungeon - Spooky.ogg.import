@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dungeon - Spooky.ogg-5f098107a8f5e93a1c669a910fd0095a.oggstr"
+
+[deps]
+
+source_file="res://Asset/Resource/sfx/Dungeon - Spooky.ogg"
+dest_files=[ "res://.import/Dungeon - Spooky.ogg-5f098107a8f5e93a1c669a910fd0095a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

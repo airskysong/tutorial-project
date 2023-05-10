@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Asset/Object/主场景模块/网格模块.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Asset/Scripts/主场景模块.gd" type="Script" id=2]
+[ext_resource path="res://Asset/Resource/Pixel-.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="主场景模块" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="网格模块" parent="." instance=ExtResource( 1 )]
+position = Vector2( 480, 352 )
+
+[node name="移动间隔" type="Timer" parent="."]
+one_shot = true
+
+[node name="下落间隔" type="Timer" parent="."]
+
+[node name="旋转间隔" type="Timer" parent="."]
+one_shot = true
+
+[node name="预览" type="ColorRect" parent="."]
+margin_left = 688.0
+margin_top = 32.0
+margin_right = 838.0
+margin_bottom = 182.0
+rect_pivot_offset = Vector2( 75, 75 )
+mouse_filter = 1
+color = Color( 0.478431, 0.737255, 0.168627, 1 )
+
+[node name="预览位置" type="Position2D" parent="预览"]
+position = Vector2( 80, 72 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="结束提示" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -148.5
+margin_top = -128.0
+margin_right = 148.5
+margin_bottom = -88.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+
+[node name="重来按钮" type="Button" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 440.0
+margin_top = 344.0
+margin_right = -448.0
+margin_bottom = -344.0
+custom_fonts/font = SubResource( 2 )
+text = "Retry"
+icon_align = 1
+
+[node name="分数文本" type="Label" parent="CanvasLayer"]
+margin_left = 18.0
+margin_top = 63.0
+margin_right = 298.0
+margin_bottom = 91.0
+custom_fonts/font = SubResource( 3 )
+text = "score:0000"
+align = 1
+valign = 1
+
+[node name="等级文本" type="Label" parent="CanvasLayer"]
+margin_left = 18.0
+margin_top = 120.0
+margin_right = 298.0
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 3 )
+text = "level:00"
+align = 1
+valign = 1

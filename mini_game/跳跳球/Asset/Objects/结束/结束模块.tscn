@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Asset/Objects/结束/结束模块.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Resource/重载.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Font/Kingnam-Maiyuan-2.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Asset/Objects/结束/文件读取模块.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "旋转"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[node name="结束模块" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+
+[node name="当前分数文本" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.0
+margin_top = -128.0
+margin_right = 221.0
+margin_bottom = -7.0
+custom_fonts/font = SubResource( 1 )
+text = "当前分数：000"
+align = 1
+valign = 1
+
+[node name="最高分文本" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.0
+margin_top = -40.0
+margin_right = 221.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 1 )
+text = "最高分数：000"
+align = 1
+valign = 1
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control"]
+margin_left = 444.0
+margin_top = 468.0
+margin_right = 526.0
+margin_bottom = 550.0
+rect_pivot_offset = Vector2( 41, 41 )
+texture_normal = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/TextureButton"]
+autoplay = "旋转"
+anims/RESET = SubResource( 2 )
+"anims/旋转" = SubResource( 3 )
+
+[node name="文件读取模块" parent="." instance=ExtResource( 4 )]
+
+[connection signal="button_down" from="CanvasLayer/Control/TextureButton" to="." method="_on_TextureButton_button_down"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Asset/Resource/球/Ball1.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Scripts/小球模块.gd" type="Script" id=2]
+[ext_resource path="res://Asset/Resource/声音/Explosion2.wav" type="AudioStream" id=3]
+[ext_resource path="res://Asset/Resource/声音/Coin Collected2.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 17.0
+
+[node name="小球模块" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.88
+one_shot = true
+
+[node name="伤害检测" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="伤害检测"]
+shape = SubResource( 2 )
+
+[node name="爆炸音效" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="金币音效" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="area_entered" from="伤害检测" to="." method="_on_Area2D_area_entered"]

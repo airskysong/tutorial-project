@@ -1,0 +1,8 @@
+res://Asset/Scenes/Room/linkway.tscn
+res://Asset/Scenes/player.tscn
+res://Asset/Scripts/Player.gd
+res://Asset/Scenes/main_scene.tscn
+res://Asset/Scenes/Room/room_a.tscn
+res://Asset/Scenes/Room/room_b.tscn
+res://Asset/Scenes/Room/room_c.tscn
+res://Asset/Scenes/Room/room_d.tscn

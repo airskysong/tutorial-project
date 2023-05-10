@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Field - Nebula Cloud.ogg-153cf6b466f58e9671deaeaf3a1ac6b1.oggstr"
+
+[deps]
+
+source_file="res://Asset/Resource/sfx/Field - Nebula Cloud.ogg"
+dest_files=[ "res://.import/Field - Nebula Cloud.ogg-153cf6b466f58e9671deaeaf3a1ac6b1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

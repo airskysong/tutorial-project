@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Asset/Prefabs/Main/Role.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Asset/Scripts/Cpu.gd" type="Script" id=2]
+[ext_resource path="res://Asset/Prefabs/Main/Poker_AI.tscn" type="PackedScene" id=3]
+
+[node name="CPU" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Poker_AI" parent="." index="3" instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true

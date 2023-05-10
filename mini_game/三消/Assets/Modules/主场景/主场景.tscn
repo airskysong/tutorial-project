@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Modules/主场景/元素管理器.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Resource/Kenney Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Scripts/连击条.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "播放效果"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.25, 1.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 1, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="主场景" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="元素管理器" parent="." instance=ExtResource( 2 )]
+position = Vector2( 156, 70 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+margin_bottom = 48.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+
+[node name="分数文本" type="Label" parent="CanvasLayer/Control/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 950.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 1 )
+text = "Score 0000"
+
+[node name="连击文本" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -132.0
+margin_top = -62.0
+margin_right = 132.0
+margin_bottom = -14.0
+rect_pivot_offset = Vector2( 132, 24 )
+custom_fonts/font = SubResource( 1 )
+text = "000hit！"
+align = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/连击文本"]
+anims/RESET = SubResource( 4 )
+"anims/播放效果" = SubResource( 5 )
+
+[node name="连击条" type="ProgressBar" parent="CanvasLayer/Control"]
+margin_left = 348.0
+margin_top = 623.0
+margin_right = 604.0
+margin_bottom = 637.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+step = 1.0
+value = 85.0
+percent_visible = false
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control/连击条"]

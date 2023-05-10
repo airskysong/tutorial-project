@@ -1,0 +1,71 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Asset/Resource/a2.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Resource/b1.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Resource/a6.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Resource/b2.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Resource/a3.png" type="Texture" id=5]
+[ext_resource path="res://Asset/Resource/a4.png" type="Texture" id=6]
+[ext_resource path="res://Asset/Resource/a5.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Resource/a7.png" type="Texture" id=8]
+[ext_resource path="res://Asset/Resource/a8.png" type="Texture" id=9]
+[ext_resource path="res://Asset/Resource/a1.png" type="Texture" id=10]
+[ext_resource path="res://Asset/Scripts/炸弹模块.gd" type="Script" id=11]
+[ext_resource path="res://Asset/Resource/b.wav" type="AudioStream" id=12]
+[ext_resource path="res://Asset/Resource/Fonts/BOBOHEI-2.otf" type="DynamicFontData" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "爆炸",
+"speed": 40.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 35.0
+
+[sub_resource type="DynamicFont" id=3]
+size = 9
+font_data = ExtResource( 13 )
+
+[node name="炸弹模块" type="Node2D"]
+scale = Vector2( 3, 3 )
+z_index = 1
+script = ExtResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SFX_explore" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+
+[node name="倒计时" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -8.0
+margin_right = 20.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 3 )
+text = "1"
+align = 1
+valign = 1
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

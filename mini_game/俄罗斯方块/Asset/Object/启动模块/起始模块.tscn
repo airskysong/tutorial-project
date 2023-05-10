@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Asset/Resource/Pixel-.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Asset/Object/主场景模块/方块/J形.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Asset/Object/主场景模块/方块/S形.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Asset/Object/主场景模块/方块/T形.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Asset/Scripts/起始模块.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "闪烁"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.109804 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="起始模块" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 960.0
+margin_bottom = 720.0
+color = Color( 0.0823529, 0.705882, 0.796078, 1 )
+
+[node name="S形" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.454902, 1, 0.623529, 1 )
+position = Vector2( 560, 592 )
+
+[node name="J形" parent="." instance=ExtResource( 2 )]
+modulate = Color( 1, 0.376471, 0.376471, 1 )
+position = Vector2( 400, 560 )
+
+[node name="T形" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.960784, 1, 0.0588235, 1 )
+position = Vector2( 488, 96 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="title" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -144.0
+margin_right = 228.0
+margin_bottom = -64.0
+custom_fonts/font = SubResource( 1 )
+text = "TETRIS"
+
+[node name="title2" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -16.0
+margin_right = 256.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "press any key to start"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/title2"]
+autoplay = "闪烁"
+anims/RESET = SubResource( 3 )
+"anims/闪烁" = SubResource( 4 )

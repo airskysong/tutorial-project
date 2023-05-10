@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Asset/Objects/角色模块/玩家.tscn" type="PackedScene" id=1]
+
+[node name="主场景" type="Node2D"]
+
+[node name="玩家" parent="." instance=ExtResource( 1 )]

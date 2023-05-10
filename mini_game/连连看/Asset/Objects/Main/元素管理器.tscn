@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Asset/Scripts/元素管理器.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Objects/Main/判定模块.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Asset/Objects/Main/连线模块.tscn" type="PackedScene" id=3]
+
+[node name="元素管理器" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="连线模块" parent="." instance=ExtResource( 3 )]
+
+[node name="判定模块" parent="." instance=ExtResource( 2 )]

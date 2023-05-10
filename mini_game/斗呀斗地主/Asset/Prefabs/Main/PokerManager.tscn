@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Asset/Scripts/PokerManager.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Prefabs/Main/Poker_patterns.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Asset/Prefabs/Main/Poker_AI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Asset/Prefabs/Main/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Asset/Prefabs/Main/CPU.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Asset/Resource/btn1.png" type="Texture" id=6]
+[ext_resource path="res://Asset/Resource/btn2.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Resource/Fonts/BOBOHEI-2.otf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.478431, 0.313726, 0.0313726, 1 )
+font_data = ExtResource( 8 )
+
+[node name="PokerManager" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Poker_AI" parent="." instance=ExtResource( 3 )]
+
+[node name="Poker_patterns" parent="." instance=ExtResource( 2 )]
+
+[node name="CPU" parent="." instance=ExtResource( 5 )]
+position = Vector2( 72, 250 )
+selecting_offset = Vector2( 50, 0 )
+destop_area_offset = Vector2( 192, -128 )
+
+[node name="CPU2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 864, 250 )
+selecting_offset = Vector2( -50, 0 )
+destop_area_offset = Vector2( -192, -128 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 460, 460 )
+selecting_offset = Vector2( 0, -25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayOutBtn" type="TextureButton" parent="CanvasLayer"]
+margin_left = 549.0
+margin_top = 330.0
+margin_right = 629.0
+margin_bottom = 360.0
+rect_scale = Vector2( 0.997296, 0.995044 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayOutBtn"]
+margin_left = 20.0542
+margin_top = 5.0249
+margin_right = 60.0542
+margin_bottom = 26.0249
+custom_fonts/font = SubResource( 1 )
+text = "出牌"
+align = 1
+valign = 1
+
+[node name="SkinnedBtn" type="TextureButton" parent="CanvasLayer"]
+margin_left = 300.0
+margin_top = 330.0
+margin_right = 380.0
+margin_bottom = 360.0
+rect_scale = Vector2( 0.997296, 0.995044 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/SkinnedBtn"]
+margin_left = 20.0541
+margin_top = 5.02487
+margin_right = 60.0541
+margin_bottom = 26.0249
+custom_fonts/font = SubResource( 1 )
+text = "跳过"
+align = 1
+valign = 1
+
+[node name="btn_tween" type="Tween" parent="CanvasLayer"]
+
+[node name="Timer" type="Timer" parent="."]
